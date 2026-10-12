@@ -4,6 +4,10 @@
   padding: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: system-ui, sans-serif;
   background: #0f172a;
@@ -19,6 +23,7 @@ main {
 
 section {
   padding: 80px 0;
+  scroll-margin-top: 70px;
 }
 
 h1 {
@@ -55,6 +60,7 @@ article {
   border-radius: 12px;
   margin-bottom: 16px;
 }
+
 .button {
   display: inline-block;
   background: #38bdf8;
@@ -69,12 +75,16 @@ article {
   background: #7dd3fc;
   text-decoration: none;
 }
-html {
-  scroll-behavior: smooth;
+
+.button-outline {
+  background: transparent;
+  color: #38bdf8;
+  border: 1px solid #38bdf8;
 }
 
-section {
-  scroll-margin-top: 70px;
+.button-outline:hover {
+  background: #38bdf8;
+  color: #0f172a;
 }
 
 .navbar {
@@ -105,6 +115,7 @@ section {
   font-size: 1.2rem;
   color: #e2e8f0;
 }
+
 #about h3 {
   margin-top: 24px;
 }
@@ -139,8 +150,225 @@ section {
   text-decoration: none;
 }
 
+.resume-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
 .footer {
   text-align: center;
   padding: 32px 24px;
   border-top: 1px solid #1e293b;
+}
+
+.menu-button {
+  display: none;
+  background: none;
+  border: none;
+  color: #e2e8f0;
+  font-size: 1.6rem;
+  cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .menu-button {
+    display: block;
+  }
+
+  .navbar .nav-links {
+    display: none;
+    flex-direction: column;
+    gap: 0;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #0f172a;
+    border-bottom: 1px solid #1e293b;
+    padding: 8px 24px 16px;
+  }
+
+  .navbar .nav-links.open {
+    display: flex;
+  }
+
+  .navbar .nav-links li a {
+    display: block;
+    padding: 12px 0;
+  }
+}
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.hero-img {
+  width: 260px;
+  height: 260px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid #38bdf8;
+}
+
+.skills li {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.skills li svg {
+  color: #38bdf8;
+}
+
+@media (max-width: 600px) {
+  .hero {
+    flex-direction: column-reverse;
+    text-align: center;
+  }
+
+  .hero-img {
+    width: 200px;
+    height: 200px;
+  }
+}
+.gradient-text {
+  background: linear-gradient(90deg, #38bdf8, #a78bfa, #f472b6, #38bdf8);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shine 6s linear infinite;
+}
+
+@keyframes shine {
+  to {
+    background-position: 200% center;
+  }
+}
+
+.role {
+  color: #38bdf8;
+  font-size: 1.4rem;
+  font-weight: 600;
+  min-height: 2rem;
+}
+
+.cursor {
+  margin-left: 2px;
+  animation: blink 1s steps(1) infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.hero {
+  position: relative;
+  isolation: isolate;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.35), transparent 70%);
+  filter: blur(40px);
+  z-index: -1;
+  animation: glow 6s ease-in-out infinite;
+}
+
+@keyframes glow {
+  0%,
+  100% {
+    transform: translateY(-50%) scale(1);
+  }
+  50% {
+    transform: translateY(-60%) scale(1.15);
+  }
+}
+
+.hero-img {
+  animation: bob 5s ease-in-out infinite;
+}
+
+@keyframes bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+
+article {
+  border: 1px solid transparent;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+article:hover {
+  transform: translateY(-6px);
+  border-color: #38bdf8;
+  box-shadow: 0 12px 30px rgba(56, 189, 248, 0.15);
+}
+
+.skills li {
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.skills li:hover {
+  transform: translateY(-3px);
+  background: #334155;
+}
+
+.button {
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+.logo {
+  display: flex;
+  align-items: center;
+  transition: transform 0.2s ease;
+}
+
+.logo:hover {
+  transform: scale(1.06);
+  text-decoration: none;
 }
