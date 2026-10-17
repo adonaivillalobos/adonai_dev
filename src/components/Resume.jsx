@@ -15,7 +15,7 @@ function Resume() {
         <a
           className="button button-outline"
           href="/resume.pdf"
-          download="#"
+          download="Adonai-Villalobos-Resume.pdf"
         >
           Download PDF
         </a>
